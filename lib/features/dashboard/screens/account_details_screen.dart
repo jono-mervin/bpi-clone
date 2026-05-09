@@ -45,7 +45,7 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
             const SizedBox(height: 15),
             // Main Account Card
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
@@ -69,7 +69,7 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
                           widget.account.name,
                           style: const TextStyle(
                             color: AppColors.navy,
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -92,7 +92,7 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
                           'PHP ${NumberFormat('#,##0.00', 'en_US').format(widget.account.balance)}',
                           style: const TextStyle(
                             color: AppColors.navy,
-                            fontSize: 22,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -106,7 +106,7 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
                           'PHP ${NumberFormat('#,##0.00', 'en_US').format(widget.account.balance)}',
                           style: const TextStyle(
                             color: Colors.grey,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -169,8 +169,8 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
             const SizedBox(height: 25),
             // Transaction History Section
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
@@ -189,7 +189,7 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
                     'Transaction history',
                     style: TextStyle(
                       color: AppColors.navy,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

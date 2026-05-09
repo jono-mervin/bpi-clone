@@ -24,15 +24,15 @@ class BPINavBar extends StatelessWidget {
     ];
 
     return SizedBox(
-      height: 85,
+      height: 75,
       child: Stack(
         children: [
           CustomPaint(
-            size: Size(MediaQuery.of(context).size.width, 85),
+            size: Size(MediaQuery.of(context).size.width, 75),
             painter: BNBCustomPainter(),
           ),
           SizedBox(
-            height: 85,
+            height: 75,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: items.asMap().entries.map((entry) {
@@ -139,8 +139,8 @@ class BPIFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 60,
-      height: 60,
+      width: 54,
+      height: 54,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         boxShadow: [
@@ -157,7 +157,7 @@ class BPIFAB extends StatelessWidget {
         backgroundColor: AppColors.bpiRed,
         elevation: 0,
         shape: const CircleBorder(),
-        child: const Icon(Icons.qr_code_scanner, color: AppColors.white, size: 32),
+        child: const Icon(Icons.qr_code_scanner, color: AppColors.white, size: 28),
       ),
     );
   }

@@ -23,7 +23,9 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      resizeToAvoidBottomInset: false,
       body: Stack(
+        fit: StackFit.expand,
         children: [
           MobileScanner(
             controller: _controller,
@@ -38,57 +40,64 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
           ),
           // Custom Overlay
           _buildOverlay(),
-          // Top Bar
-          Positioned(
-            top: 50,
-            left: 20,
-            right: 20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // Top Bar & Bottom Hint wrapped in SafeArea for stability
+          SafeArea(
+            child: Stack(
               children: [
-                IconButton(
-                  icon: const Icon(Icons.close, color: Colors.white, size: 30),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                const Text(
-                  'Scan QR Code',
-                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                IconButton(
-                  icon: Icon(
-                    _isFlashOn ? Icons.flash_on : Icons.flash_off,
-                    color: Colors.white,
-                    size: 30,
+                // Top Bar
+                Positioned(
+                  top: 10,
+                  left: 20,
+                  right: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.close, color: Colors.white, size: 28),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                      const Text(
+                        'Scan QR Code',
+                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          _isFlashOn ? Icons.flash_on : Icons.flash_off,
+                          color: Colors.white,
+                          size: 28,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isFlashOn = !_isFlashOn;
+                            _controller.toggleTorch();
+                          });
+                        },
+                      ),
+                    ],
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _isFlashOn = !_isFlashOn;
-                      _controller.toggleTorch();
-                    });
-                  },
                 ),
-              ],
-            ),
-          ),
-          // Bottom Hint
-          Positioned(
-            bottom: 60,
-            left: 0,
-            right: 0,
-            child: Column(
-              children: [
-                const Text(
-                  'Align the QR code within the frame',
-                  style: TextStyle(color: Colors.white, fontSize: 14),
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildActionButton(Icons.image_outlined, 'Upload from gallery'),
-                    const SizedBox(width: 40),
-                    _buildActionButton(Icons.qr_code_2, 'My QR code'),
-                  ],
+                // Bottom Hint
+                Positioned(
+                  bottom: 40,
+                  left: 0,
+                  right: 0,
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Align the QR code within the frame',
+                        style: TextStyle(color: Colors.white, fontSize: 13),
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildActionButton(Icons.image_outlined, 'Upload from gallery'),
+                          const SizedBox(width: 40),
+                          _buildActionButton(Icons.qr_code_2, 'My QR code'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

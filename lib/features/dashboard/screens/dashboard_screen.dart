@@ -43,7 +43,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         },
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(top: 24),
         child: BPIFAB(
           onPressed: () => Navigator.push(
             context,

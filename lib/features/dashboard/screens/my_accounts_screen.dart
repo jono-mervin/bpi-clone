@@ -137,7 +137,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -146,13 +146,13 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                       children: [
                         Text(
                           _getGreeting(),
-                          style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
+                          style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
                         ),
                         Text(
                           user.name.split(' ')[0],
                           style: const TextStyle(
                             color: AppColors.navy,
-                            fontSize: 22,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -171,7 +171,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
 
               // --- Auto-playing Carousel ---
               SizedBox(
-                height: 220.s,
+                height: 200.s,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: _slides.length,
@@ -200,11 +200,11 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                   )),
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
 
               // Accounts Section
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -235,7 +235,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                             'Deposit accounts',
                             style: TextStyle(
                               color: AppColors.navy,
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -412,7 +412,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
         MaterialPageRoute(builder: (context) => AccountDetailsScreen(account: account)),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -420,14 +420,14 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
               account.name,
               style: const TextStyle(
                 color: AppColors.navy,
-                fontSize: 16,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               account.number,
-              style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+              style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
             ),
             Align(
               alignment: Alignment.centerRight,
@@ -443,7 +443,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                         'PHP ',
                         style: GoogleFonts.openSans(
                           color: Colors.grey.shade600,
-                          fontSize: 12,
+                          fontSize: 11,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -451,7 +451,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                         NumberFormat('#,##0.00', 'en_US').format(account.balance),
                         style: GoogleFonts.inconsolata(
                           color: AppColors.navy,
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.w400,
                           letterSpacing: -0.5,
                         ),
@@ -463,7 +463,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                     'Available balance',
                     style: TextStyle(
                       color: Colors.grey.shade600,
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
