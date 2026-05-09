@@ -1,0 +1,43 @@
+name: neobank_ph
+description: A mobile banking simulation app cloning the BPI experience.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^3.3.1
+  dio: ^5.4.0
+  flutter_secure_storage: ^10.1.0
+  local_auth: ^3.0.1
+  fl_chart: ^1.2.0
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^7.2.0
+  lottie: ^3.0.0
+  shimmer: ^3.0.0
+  google_fonts: ^8.1.0
+  cupertino_icons: ^1.0.6
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/images/app_logo.png"
+  min_sdk_android: 21
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/retrieve_username.png
+    - assets/images/forgot_password.png
+    - assets/images/bpi_icon.png
+    - assets/images/pdic_logo.png
