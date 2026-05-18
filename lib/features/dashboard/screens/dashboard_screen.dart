@@ -30,7 +30,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     if (_currentIndex >= 2) navBarIndex++;
 
     return Scaffold(
-      extendBody: true,
+      extendBody: false,
       resizeToAvoidBottomInset: false,
       body: _screens[_currentIndex],
       bottomNavigationBar: BPINavBar(

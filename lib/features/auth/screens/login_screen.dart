@@ -7,10 +7,11 @@ import '../../../core/providers/user_provider.dart';
 import '../../../widgets/bpi_nav_bar.dart';
 import '../../dashboard/screens/dashboard_screen.dart';
 import 'package:neobank_ph/features/notifications/screens/notifications_screen.dart';
+import 'signup_screen.dart';
 import 'retrieve_username_screen.dart';
 import 'forgot_password_screen.dart';
-import 'more_services_screen.dart';
 import 'lock_access_screen.dart';
+import 'more_services_screen.dart';
 import '../../qr/screens/qr_scanner_screen.dart';
 import '../../../core/utils/responsive.dart';
 
@@ -24,6 +25,7 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _obscurePassword = true;
   bool _rememberMe = false;
+  bool _showLoginFields = false;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -64,107 +66,146 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-                // Bank Name Title (BPI) - Matches User Request
-                Text(
-                  'BPI',
-                  style: GoogleFonts.inter(
-                    color: AppColors.bpiRed,
-                    fontSize: 80.sp,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: -3,
-                  ),
-                ),
-                const SizedBox(height: 40),
-                _buildTextField(label: 'Username', controller: _usernameController),
-                const SizedBox(height: 20),
-                _buildTextField(
-                  label: 'Password',
-                  isPassword: true,
-                  obscureText: _obscurePassword,
-                  controller: _passwordController,
-                  onToggleVisibility: () {
-                    setState(() => _obscurePassword = !_obscurePassword);
-                  },
-                ),
-                const SizedBox(height: 15),
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 24,
-                      width: 24,
-                      child: Checkbox(
-                        value: _rememberMe,
-                        onChanged: (val) => setState(() => _rememberMe = val ?? false),
-                        activeColor: AppColors.bpiRed,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    const Text('Remember me', style: TextStyle(color: AppColors.navy, fontSize: 14)),
-                  ],
-                ),
-                const SizedBox(height: 15),
-                SizedBox(
-                  width: double.infinity,
-                  height: 55.s,
-                  child: ElevatedButton(
-                    onPressed: _handleLogin,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.bpiRed,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.s)),
-                    ),
-                    child: Text(
-                      'Log in',
-                      style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
+                // Bank Name Title (BPI)
                 Center(
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
+                  child: Text(
+                    'BPI',
+                    style: GoogleFonts.inter(
+                      color: AppColors.bpiRed,
+                      fontSize: 45.sp,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -3,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 100), // Push buttons down to match screenshot
+                
+                if (!_showLoginFields) ...[
+                  // Initial Welcome Buttons (Matching Screenshot)
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48.s,
+                    child: ElevatedButton(
+                      onPressed: () => setState(() => _showLoginFields = true),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.bpiRed,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.s)),
+                      ),
+                      child: Text(
+                        'Log in',
+                        style: TextStyle(color: Colors.white, fontSize: 16.sp, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48.s,
+                    child: OutlinedButton(
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupScreen())),
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Colors.grey),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.s)),
+                      ),
+                      child: Text(
+                        'Create new account',
+                        style: TextStyle(color: AppColors.navy, fontSize: 16.sp, fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ),
+                ] else ...[
+                  // Login Fields
+                  _buildTextField(label: 'Username', controller: _usernameController),
+                  const SizedBox(height: 16),
+                  _buildTextField(
+                    label: 'Password',
+                    isPassword: true,
+                    obscureText: _obscurePassword,
+                    controller: _passwordController,
+                    onToggleVisibility: () {
+                      setState(() => _obscurePassword = !_obscurePassword);
+                    },
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
                     children: [
-                      Text('Forgot ', style: TextStyle(color: Colors.grey.shade600, fontSize: 15)),
-                      GestureDetector(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RetrieveUsernameScreen())),
-                        child: const Text('username', style: TextStyle(color: AppColors.bpiTeal, fontWeight: FontWeight.bold)),
+                      SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: Checkbox(
+                          value: _rememberMe,
+                          onChanged: (val) => setState(() => _rememberMe = val ?? false),
+                          activeColor: AppColors.bpiRed,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                        ),
                       ),
-                      Text(' or ', style: TextStyle(color: Colors.grey.shade600, fontSize: 15)),
-                      GestureDetector(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPasswordScreen())),
-                        child: const Text('password', style: TextStyle(color: AppColors.bpiTeal, fontWeight: FontWeight.bold)),
-                      ),
+                      const SizedBox(width: 8),
+                      const Text('Remember me', style: TextStyle(color: AppColors.navy, fontSize: 13)),
                     ],
                   ),
-                ),
-                const SizedBox(height: 40),
-                Center(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Lost/hacked account? Secure it now',
-                        style: TextStyle(color: Colors.grey.shade700, fontSize: 15),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48.s,
+                    child: ElevatedButton(
+                      onPressed: _handleLogin,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.bpiRed,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.s)),
                       ),
-                      const SizedBox(height: 8),
-                      GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const LockAccessScreen()),
+                      child: Text(
+                        'Log in',
+                        style: TextStyle(color: Colors.white, fontSize: 16.sp, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: Wrap(
+                      alignment: WrapAlignment.center,
+                      children: [
+                        Text('Forgot ', style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
+                        GestureDetector(
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RetrieveUsernameScreen())),
+                          child: const Text('username', style: TextStyle(color: AppColors.bpiTeal, fontSize: 13, fontWeight: FontWeight.bold)),
                         ),
-                        child: const Text(
-                          'Lock my access',
-                          style: TextStyle(
-                            color: AppColors.bpiTeal,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                        Text(' or ', style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
+                        GestureDetector(
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPasswordScreen())),
+                          child: const Text('password', style: TextStyle(color: AppColors.bpiTeal, fontSize: 13, fontWeight: FontWeight.bold)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Lost/hacked account? Secure it now',
+                          style: TextStyle(color: Colors.grey.shade700, fontSize: 13),
+                        ),
+                        const SizedBox(height: 8),
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LockAccessScreen()),
+                          ),
+                          child: const Text(
+                            'Lock my access',
+                            style: TextStyle(
+                              color: AppColors.bpiTeal,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 30),
+                ],
               ],
             ),
           ),
@@ -182,7 +223,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   void _handleLogin() {
-    if (_usernameController.text == 'admin' && _passwordController.text == 'admin123') {
+    if (_usernameController.text == 'joelopez' && _passwordController.text == 'joe2323') {
       ref.read(userProvider.notifier).updateName('Joe Lopez');
       
       // Initialize default account if none exists
@@ -197,7 +238,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     } else if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter credentials')));
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Invalid credentials. Use admin / admin123')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Invalid credentials.')));
     }
   }
 

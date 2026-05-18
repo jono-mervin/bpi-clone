@@ -10,12 +10,12 @@ class Responsive {
     _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData.size.width;
     screenHeight = _mediaQueryData.size.height;
-    // Use 390 as reference width (iPhone 13/14) and apply a 0.9x multiplier for a more compact UI
-    scaleFactor = (screenWidth / 390) * 0.9;
+    // Use 430 as reference width (iPhone 14 Pro Max) and apply a 0.85x multiplier for a more compact UI
+    scaleFactor = (screenWidth / 430) * 0.95;
     
-    // Cap the scale factor to prevent extreme scaling on tablets
-    if (scaleFactor > 1.1) scaleFactor = 1.1;
-    if (scaleFactor < 0.7) scaleFactor = 0.7;
+    // Cap the scale factor to prevent extreme scaling
+    if (scaleFactor > 1.0) scaleFactor = 1.0;
+    if (scaleFactor < 0.65) scaleFactor = 0.65;
   }
 
   static double scale(double size) {

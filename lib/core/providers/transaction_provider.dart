@@ -7,6 +7,7 @@ enum TransactionType {
   investment,
   withdrawal,
   exchange,
+  deposit,
   other
 }
 

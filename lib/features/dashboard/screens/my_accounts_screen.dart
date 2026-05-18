@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -11,6 +10,7 @@ import '../../../core/utils/responsive.dart';
 import 'package:neobank_ph/features/notifications/screens/notifications_screen.dart';
 import 'account_details_screen.dart';
 import '../../more/screens/manage_accounts_screen.dart';
+import '../../auth/screens/deposit_screen.dart';
 
 // --- Carousel Slide Data Model ---
 class _AlertSlide {
@@ -137,7 +137,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(14.s),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -146,13 +146,13 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                       children: [
                         Text(
                           _getGreeting(),
-                          style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+                          style: TextStyle(color: Colors.grey.shade600, fontSize: 14.sp),
                         ),
                         Text(
                           user.name.split(' ')[0],
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: AppColors.navy,
-                            fontSize: 20,
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -162,7 +162,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                       onTap: () => Navigator.push(context, MaterialPageRoute(
                         builder: (context) => const NotificationsScreen(isPublic: false),
                       )),
-                      child: const Icon(Icons.mail_outline, color: AppColors.navy, size: 28),
+                      child: Icon(Icons.mail_outline, color: AppColors.navy, size: 32.s),
                     ),
                   ],
                 ),
@@ -171,7 +171,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
 
               // --- Auto-playing Carousel ---
               SizedBox(
-                height: 200.s,
+                height: 170.s,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: _slides.length,
@@ -184,23 +184,23 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
               ),
 
               // Dot indicators
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(_slides.length, (index) => AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    margin: EdgeInsets.symmetric(horizontal: 3.s),
-                    width: _currentPage == index ? 18.s : 8.s,
-                    height: 8.s,
+                    margin: EdgeInsets.symmetric(horizontal: 2.s),
+                    width: _currentPage == index ? 15.s : 6.s,
+                    height: 6.s,
                     decoration: BoxDecoration(
                       color: _currentPage == index ? Colors.red : Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(4.s),
+                      borderRadius: BorderRadius.circular(3.s),
                     ),
                   )),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
 
               // Accounts Section
               Container(
@@ -219,42 +219,55 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(14.s),
                       child: Row(
                         children: [
                           Container(
-                            padding: const EdgeInsets.all(8),
+                            padding: EdgeInsets.all(8.s),
                             decoration: BoxDecoration(
                               color: AppColors.iconBgGreen,
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.s),
                             ),
-                            child: const Icon(Icons.savings_outlined, color: AppColors.bpiTeal, size: 22),
+                            child: Icon(Icons.savings_outlined, color: AppColors.bpiTeal, size: 20.s),
                           ),
-                          const SizedBox(width: 12),
-                          const Text(
+                          SizedBox(width: 10.s),
+                          Text(
                             'Deposit accounts',
                             style: TextStyle(
                               color: AppColors.navy,
-                              fontSize: 16,
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8.s),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: EdgeInsets.symmetric(horizontal: 6.s, vertical: 2.s),
                             decoration: BoxDecoration(
                               color: AppColors.bpiTeal,
-                              borderRadius: BorderRadius.circular(4),
+                              borderRadius: BorderRadius.circular(4.s),
                             ),
-                            child: Text('${accounts.length}', style: const TextStyle(color: Colors.white, fontSize: 12)),
+                            child: Text('${accounts.length}', style: TextStyle(color: Colors.white, fontSize: 10.sp)),
                           ),
                           const Spacer(),
+                          GestureDetector(
+                            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DepositScreen())),
+                            child: Text(
+                              'Deposit',
+                              style: TextStyle(
+                                color: AppColors.bpiTeal,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 15.s),
                           IconButton(
                             padding: EdgeInsets.zero,
                             constraints: const BoxConstraints(),
                             icon: Icon(
                               isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
                               color: Colors.grey,
+                              size: 20.s,
                             ),
                             onPressed: () => ref.read(accountsExpandedProvider.notifier).toggle(),
                           ),
@@ -308,7 +321,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 120),
+              SizedBox(height: 30.s),
             ],
           ),
         ),
@@ -318,17 +331,16 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
 
   Widget _buildSlideCard(_AlertSlide slide) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.s),
-      padding: EdgeInsets.all(20.s),
-      alignment: Alignment.center,
+      margin: EdgeInsets.symmetric(horizontal: 16.s, vertical: 8.s),
+      padding: EdgeInsets.all(16.s),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15.s),
+        borderRadius: BorderRadius.circular(12.s),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10.s,
-            offset: Offset(0, 5.s),
+            blurRadius: 8.s,
+            offset: Offset(0, 4.s),
           ),
         ],
       ),
@@ -337,7 +349,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
         children: [
           // Text content
           Expanded(
-            flex: 3,
+            flex: 4,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -346,46 +358,50 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                   Row(
                     children: [
                       Container(
-                        width: 8.s,
-                        height: 8.s,
+                        width: 6.s,
+                        height: 6.s,
                         decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 6),
                       Text(
                         slide.date,
-                        style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
+                        style: TextStyle(color: Colors.grey.shade600, fontSize: 11.sp),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 6),
                 ] else ...[
                   Container(
-                    width: 8.s,
-                    height: 8.s,
+                    width: 6.s,
+                    height: 6.s,
                     decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 6),
                 ],
                 Text(
                   slide.title,
-                  style: const TextStyle(
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
                     color: AppColors.navy,
-                    fontSize: 16,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 4),
                 Text(
                   slide.subtitle,
-                  style: TextStyle(color: Colors.grey.shade600, fontSize: 13, height: 1.4),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(color: Colors.grey.shade600, fontSize: 14.sp, height: 1.2),
                 ),
                 if (slide.linkText != null) ...[
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8),
                   Text(
                     slide.linkText!,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.bpiTeal,
-                      fontSize: 13,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -393,11 +409,12 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
               ],
             ),
           ),
+          const SizedBox(width: 10),
           // Icon on the right
           Expanded(
             flex: 2,
             child: Center(
-              child: Icon(slide.icon, color: slide.iconColor, size: 80.s),
+              child: Icon(slide.icon, color: slide.iconColor, size: 75.s),
             ),
           ),
         ],
@@ -412,22 +429,22 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
         MaterialPageRoute(builder: (context) => AccountDetailsScreen(account: account)),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(14.s),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               account.name,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.navy,
-                fontSize: 15,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 2.s),
             Text(
               account.number,
-              style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
+              style: TextStyle(color: Colors.grey.shade600, fontSize: 12.sp),
             ),
             Align(
               alignment: Alignment.centerRight,
@@ -443,7 +460,7 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                         'PHP ',
                         style: GoogleFonts.openSans(
                           color: Colors.grey.shade600,
-                          fontSize: 11,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -451,22 +468,22 @@ class _MyAccountsScreenState extends ConsumerState<MyAccountsScreen> {
                         NumberFormat('#,##0.00', 'en_US').format(account.balance),
                         style: GoogleFonts.inconsolata(
                           color: AppColors.navy,
-                          fontSize: 18,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
                           letterSpacing: -0.5,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 1),
-                  Text(
-                    'Available balance',
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+                  SizedBox(height: 1.s),
+                      Text(
+                        'Available balance',
+                        style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                 ],
               ),
             ),

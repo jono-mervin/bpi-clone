@@ -31,69 +31,69 @@ class MoreServicesScreen extends StatelessWidget {
               title: 'Savings, investments, & loans',
               headerColor: const Color(0xFFFDE8E8),
               items: [
-                _buildItem(Icons.savings_outlined, 'Open a deposit account'),
-                _buildItem(Icons.trending_up, 'Open an investment account'),
-                _buildItem(Icons.account_balance_wallet_outlined, 'Open a BPI Wealth Builder account'),
-                _buildItem(Icons.request_quote_outlined, 'Apply for a personal loan'),
-                _buildItem(Icons.home_outlined, 'Apply for a housing loan'),
-                _buildItem(Icons.directions_car_outlined, 'Apply for an auto loan'),
-                _buildItem(Icons.home_work_outlined, 'Buena Mano', subtitle: 'Browse foreclosed properties and repossessed vehicles for sale'),
-                _buildItem(Icons.house_outlined, 'Housing loan after sales services', subtitle: 'Get loan certifications, statements and other request forms'),
-                _buildItem(Icons.car_rental_outlined, 'Auto loan after sales services'),
+                _buildItem(context, Icons.savings_outlined, 'Open a deposit account'),
+                _buildItem(context, Icons.trending_up, 'Open an investment account'),
+                _buildItem(context, Icons.account_balance_wallet_outlined, 'Open a BPI Wealth Builder account'),
+                _buildItem(context, Icons.request_quote_outlined, 'Apply for a personal loan'),
+                _buildItem(context, Icons.home_outlined, 'Apply for a housing loan'),
+                _buildItem(context, Icons.directions_car_outlined, 'Apply for an auto loan'),
+                _buildItem(context, Icons.home_work_outlined, 'Buena Mano', subtitle: 'Browse foreclosed properties and repossessed vehicles for sale'),
+                _buildItem(context, Icons.house_outlined, 'Housing loan after sales services', subtitle: 'Get loan certifications, statements and other request forms'),
+                _buildItem(context, Icons.car_rental_outlined, 'Auto loan after sales services'),
               ],
             ),
             _buildSection(
               title: 'Cards',
               headerColor: const Color(0xFFE8F5E9),
               items: [
-                _buildItem(Icons.credit_card_outlined, 'Apply for a credit card'),
-                _buildItem(Icons.check_circle_outline, 'Activate credit card'),
-                _buildItem(Icons.confirmation_number_outlined, 'Credit card promos'),
-                _buildItem(Icons.card_membership_outlined, 'Debit card promos'),
+                _buildItem(context, Icons.credit_card_outlined, 'Apply for a credit card'),
+                _buildItem(context, Icons.check_circle_outline, 'Activate credit card'),
+                _buildItem(context, Icons.confirmation_number_outlined, 'Credit card promos'),
+                _buildItem(context, Icons.card_membership_outlined, 'Debit card promos'),
               ],
             ),
             _buildSection(
               title: 'Insurance',
               headerColor: const Color(0xFFFFF3E0),
               items: [
-                _buildItem(Icons.health_and_safety_outlined, 'My AIA'),
-                _buildItem(Icons.security_outlined, 'Get comprehensive coverage'),
-                _buildItem(Icons.bolt_outlined, 'Get instant coverage'),
-                _buildItem(Icons.home_outlined, 'Get home insurance'),
-                _buildItem(Icons.accessible_forward_outlined, 'Get accident insurance'),
-                _buildItem(Icons.motorcycle_outlined, 'Get motor insurance'),
+                _buildItem(context, Icons.health_and_safety_outlined, 'My AIA'),
+                _buildItem(context, Icons.security_outlined, 'Get comprehensive coverage'),
+                _buildItem(context, Icons.bolt_outlined, 'Get instant coverage'),
+                _buildItem(context, Icons.home_outlined, 'Get home insurance'),
+                _buildItem(context, Icons.accessible_forward_outlined, 'Get accident insurance'),
+                _buildItem(context, Icons.motorcycle_outlined, 'Get motor insurance'),
               ],
             ),
             _buildSection(
               title: 'Payments & wallets',
               headerColor: const Color(0xFFF3E5F5),
               items: [
-                _buildItem(Icons.account_balance_wallet_outlined, 'VYBE'),
-                _buildItem(Icons.bolt, 'QuickPay', subtitle: 'Pay bills without enrolling'),
-                _buildItem(Icons.account_balance_outlined, 'eGov', subtitle: 'Pay government fees'),
-                _buildItem(Icons.volunteer_activism_outlined, 'eDonate', subtitle: 'Send donations to support charities'),
-                _buildItem(Icons.autorenew_outlined, 'Auto Debit Arrangement', subtitle: 'Set up recurring payments'),
+                _buildItem(context, Icons.account_balance_wallet_outlined, 'VYBE'),
+                _buildItem(context, Icons.bolt, 'QuickPay', subtitle: 'Pay bills without enrolling'),
+                _buildItem(context, Icons.account_balance_outlined, 'eGov', subtitle: 'Pay government fees'),
+                _buildItem(context, Icons.volunteer_activism_outlined, 'eDonate', subtitle: 'Send donations to support charities'),
+                _buildItem(context, Icons.autorenew_outlined, 'Auto Debit Arrangement', subtitle: 'Set up recurring payments'),
               ],
             ),
             _buildSection(
               title: 'Remittance & foreign exchange',
               headerColor: const Color(0xFFFFFDE7),
               items: [
-                _buildItem(Icons.money_outlined, 'BPI to Cash', subtitle: 'Send money from your bank account to money partners like Cebuana Lhuillier, LBC, and more'),
-                _buildItem(Icons.send_outlined, 'Outward Remittance', subtitle: 'Send money to international bank accounts'),
-                _buildItem(Icons.account_balance_outlined, 'BPI Remit', subtitle: 'Send money from your US bank account to any BPI account (Powered by Meridian)'),
-                _buildItem(Icons.attach_money, 'Buy US Dollar'),
-                _buildItem(Icons.money_off_outlined, 'Sell US Dollar'),
-                _buildItem(Icons.currency_exchange_outlined, 'Forex rates'),
+                _buildItem(context, Icons.money_outlined, 'BPI to Cash', subtitle: 'Send money from your bank account to money partners like Cebuana Lhuillier, LBC, and more'),
+                _buildItem(context, Icons.send_outlined, 'Outward Remittance', subtitle: 'Send money to international bank accounts'),
+                _buildItem(context, Icons.account_balance_outlined, 'BPI Remit', subtitle: 'Send money from your US bank account to any BPI account (Powered by Meridian)'),
+                _buildItem(context, Icons.attach_money, 'Buy US Dollar'),
+                _buildItem(context, Icons.money_off_outlined, 'Sell US Dollar'),
+                _buildItem(context, Icons.currency_exchange_outlined, 'Forex rates'),
               ],
             ),
             _buildSection(
               title: 'Information & support',
               headerColor: const Color(0xFFE3F2FD),
               items: [
-                _buildItem(Icons.contact_mail_outlined, 'Contact us'),
-                _buildItem(Icons.chat_bubble_outline, 'Let\'s chat'),
-                _buildItem(Icons.info_outline, 'About the app'),
+                _buildItem(context, Icons.contact_mail_outlined, 'Contact us'),
+                _buildItem(context, Icons.chat_bubble_outline, 'Let\'s chat'),
+                _buildItem(context, Icons.info_outline, 'About the app'),
               ],
             ),
             
@@ -177,10 +177,10 @@ class MoreServicesScreen extends StatelessWidget {
 
   Widget _buildSection({required String title, required Color headerColor, required List<Widget> items}) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
@@ -194,16 +194,16 @@ class MoreServicesScreen extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             decoration: BoxDecoration(
               color: headerColor,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
             ),
             child: Text(
               title,
               style: GoogleFonts.inter(
                 color: AppColors.navy,
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -214,47 +214,50 @@ class MoreServicesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildItem(IconData icon, String title, {String? subtitle}) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(icon, color: Colors.grey.shade600, size: 24),
-              const SizedBox(width: 15),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: GoogleFonts.inter(
-                        color: AppColors.navy,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    if (subtitle != null) ...[
-                      const SizedBox(height: 4),
+  Widget _buildItem(BuildContext context, IconData icon, String title, {String? subtitle, VoidCallback? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(icon, color: Colors.grey.shade600, size: 22),
+                const SizedBox(width: 18),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Text(
-                        subtitle,
+                        title,
                         style: GoogleFonts.inter(
-                          color: Colors.grey.shade600,
-                          fontSize: 12,
-                          height: 1.4,
+                          color: AppColors.navy,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
+                      if (subtitle != null) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          subtitle,
+                          style: GoogleFonts.inter(
+                            color: Colors.grey.shade600,
+                            fontSize: 12,
+                            height: 1.4,
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Divider(height: 1, indent: 60, color: Colors.grey.shade200),
-      ],
+          Divider(height: 1, indent: 70, color: Colors.grey.shade200),
+        ],
+      ),
     );
   }
 }

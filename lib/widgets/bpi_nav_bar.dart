@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/colors.dart';
+import '../core/utils/responsive.dart';
 
 class BPINavBar extends StatelessWidget {
   final int currentIndex;
@@ -24,21 +25,21 @@ class BPINavBar extends StatelessWidget {
     ];
 
     return SizedBox(
-      height: 75,
+      height: 80.s,
       child: Stack(
         children: [
           CustomPaint(
-            size: Size(MediaQuery.of(context).size.width, 75),
+            size: Size(MediaQuery.of(context).size.width, 80.s),
             painter: BNBCustomPainter(),
           ),
           SizedBox(
-            height: 75,
+            height: 80.s,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: items.asMap().entries.map((entry) {
                 final index = entry.key;
                 final item = entry.value;
-                if (item.icon == null) return const SizedBox(width: 60);
+                if (item.icon == null) return SizedBox(width: 70.s);
                 return _buildNavItem(index, item.icon!, item.label);
               }).toList(),
             ),
@@ -56,29 +57,29 @@ class BPINavBar extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 15),
+            SizedBox(height: 18.s),
             Icon(
               icon,
               color: isSelected ? AppColors.bpiRed : Colors.grey.shade600,
-              size: 24,
+              size: 26.s,
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4.s),
             Text(
               label,
               style: TextStyle(
                 color: isSelected ? AppColors.bpiRed : Colors.grey.shade600,
-                fontSize: 10,
+                fontSize: 11.sp,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
               ),
             ),
             if (isSelected)
               Container(
-                margin: const EdgeInsets.only(top: 4),
-                height: 3,
-                width: 30,
+                margin: EdgeInsets.only(top: 4.s),
+                height: 2.s,
+                width: 25.s,
                 decoration: BoxDecoration(
                   color: AppColors.bpiRed,
-                  borderRadius: BorderRadius.circular(1.5),
+                  borderRadius: BorderRadius.circular(1.s),
                 ),
               ),
           ],
@@ -102,23 +103,23 @@ class BNBCustomPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     Path path = Path();
-    path.moveTo(0, 30);
-    path.quadraticBezierTo(0, 10, 30, 10);
+    path.moveTo(0, 25.s);
+    path.quadraticBezierTo(0, 8.s, 25.s, 8.s);
     
-    path.lineTo(size.width * 0.35, 10);
+    path.lineTo(size.width * 0.35, 8.s);
     path.cubicTo(
-      size.width * 0.40, 10, 
-      size.width * 0.38, 55, 
-      size.width * 0.50, 55,
+      size.width * 0.40, 8.s, 
+      size.width * 0.38, 48.s, 
+      size.width * 0.50, 48.s,
     );
     path.cubicTo(
-      size.width * 0.62, 55, 
-      size.width * 0.60, 10, 
-      size.width * 0.65, 10,
+      size.width * 0.62, 48.s, 
+      size.width * 0.60, 8.s, 
+      size.width * 0.65, 8.s,
     );
     
-    path.lineTo(size.width - 30, 10);
-    path.quadraticBezierTo(size.width, 10, size.width, 30);
+    path.lineTo(size.width - 25.s, 8.s);
+    path.quadraticBezierTo(size.width, 8.s, size.width, 25.s);
     
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
@@ -139,16 +140,16 @@ class BPIFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 54,
-      height: 54,
+      width: 56.s,
+      height: 56.s,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
             color: AppColors.bpiRed.withValues(alpha: 0.4),
-            blurRadius: 15,
-            spreadRadius: 2,
-            offset: const Offset(0, 4),
+            blurRadius: 12.s,
+            spreadRadius: 1.s,
+            offset: Offset(0, 3.s),
           ),
         ],
       ),
@@ -157,7 +158,7 @@ class BPIFAB extends StatelessWidget {
         backgroundColor: AppColors.bpiRed,
         elevation: 0,
         shape: const CircleBorder(),
-        child: const Icon(Icons.qr_code_scanner, color: AppColors.white, size: 28),
+        child: Icon(Icons.qr_code_scanner, color: AppColors.white, size: 28.s),
       ),
     );
   }

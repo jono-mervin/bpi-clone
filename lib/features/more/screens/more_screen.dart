@@ -12,7 +12,8 @@ import './foreign_exchange_screen.dart';
 import './manage_accounts_screen.dart';
 import './track_plan_screen.dart';
 import './service_request_screen.dart';
-import './settings_screen.dart';
+import './notification_settings_screen.dart';
+import './security_settings_screen.dart';
 import './contact_support_screen.dart';
 import './transactions_screen.dart';
 import '../../../core/utils/responsive.dart';
@@ -40,10 +41,10 @@ class MoreScreen extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const LoginScreen()),
               (route) => false,
             ),
-            icon: const Icon(Icons.logout, color: AppColors.bpiTeal, size: 20),
-            label: const Text('Log out', style: TextStyle(color: AppColors.bpiTeal, fontWeight: FontWeight.bold)),
+            icon: Icon(Icons.logout, color: AppColors.bpiTeal, size: 22.s),
+            label: Text('Log out', style: TextStyle(color: AppColors.bpiTeal, fontWeight: FontWeight.bold, fontSize: 14.sp)),
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: 12.s),
         ],
       ),
       body: LayoutBuilder(
@@ -56,12 +57,12 @@ class MoreScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: EdgeInsets.all(16.s),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _buildSectionTitle('Invest'),
-                          const SizedBox(height: 15),
+                          SizedBox(height: 12.s),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -71,9 +72,9 @@ class MoreScreen extends StatelessWidget {
                               _buildGridItem(context, Icons.toll_outlined, 'Redeem', AppColors.iconBgBlue, Colors.blue, screen: const RedeemInvestmentScreen()),
                             ],
                           ),
-                          const SizedBox(height: 25),
+                          const SizedBox(height: 20),
                           _buildSectionTitle('Services'),
-                          const SizedBox(height: 15),
+                          SizedBox(height: 12.s),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -125,8 +126,8 @@ class MoreScreen extends StatelessWidget {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _buildGridItem(context, Icons.fingerprint, 'Security', AppColors.iconBgOrange, Colors.deepOrange, screen: const SettingsScreen()),
-                              _buildGridItem(context, Icons.notifications_none, 'Notifications', AppColors.iconBgOrange, Colors.deepOrange, screen: const SettingsScreen()),
+                              _buildGridItem(context, Icons.fingerprint, 'Security', AppColors.iconBgOrange, Colors.deepOrange, screen: const SecuritySettingsScreen()),
+                              _buildGridItem(context, Icons.notifications_none, 'Notifications', AppColors.iconBgOrange, Colors.deepOrange, screen: const NotificationSettingsScreen()),
                               _buildGridItem(context, Icons.receipt_outlined, 'Transactions', AppColors.iconBgOrange, Colors.deepOrange, screen: const TransactionsScreen()),
                               _buildGridItem(context, Icons.layers_outlined, 'Manage My Accounts', AppColors.iconBgOrange, Colors.deepOrange, screen: const ManageAccountsScreen()),
                             ],
@@ -153,15 +154,15 @@ class MoreScreen extends StatelessWidget {
                       color: Colors.white,
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             'BPI is regulated by the Bangko Sentral ng Pilipinas.',
-                            style: TextStyle(color: Colors.grey, fontSize: 11),
+                            style: TextStyle(color: Colors.grey, fontSize: 10.sp),
                           ),
-                          const Text(
+                          Text(
                             'https://www.bsp.gov.ph',
-                            style: TextStyle(color: AppColors.bpiTeal, fontSize: 11, decoration: TextDecoration.none),
+                            style: TextStyle(color: AppColors.bpiTeal, fontSize: 10.sp, decoration: TextDecoration.none),
                           ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: 16.s),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -185,7 +186,7 @@ class MoreScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 100),
+                    SizedBox(height: 30.s),
                   ],
                 ),
               ),

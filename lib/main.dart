@@ -30,6 +30,12 @@ class BPIApp extends StatelessWidget {
         ),
         useMaterial3: true,
         textTheme: GoogleFonts.openSansTextTheme(),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
         appBarTheme: const AppBarTheme(
           centerTitle: false,
           elevation: 0,

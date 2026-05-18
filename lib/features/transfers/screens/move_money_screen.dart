@@ -3,12 +3,14 @@ import '../../../core/constants/colors.dart';
 import 'transfer_money_screen.dart';
 import 'pay_bills_screen.dart';
 import 'load_service_screen.dart';
+import '../../../core/utils/responsive.dart';
 
 class MoveMoneyScreen extends StatelessWidget {
   const MoveMoneyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Responsive().init(context);
     return Scaffold(
       backgroundColor: AppColors.white,
       resizeToAvoidBottomInset: false,
@@ -16,9 +18,9 @@ class MoveMoneyScreen extends StatelessWidget {
         backgroundColor: AppColors.white,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: const Text(
+        title: Text(
           'Move money',
-          style: TextStyle(color: AppColors.navy, fontWeight: FontWeight.bold, fontSize: 24),
+          style: TextStyle(color: AppColors.navy, fontWeight: FontWeight.bold, fontSize: 20.sp),
         ),
         actions: [
           IconButton(
@@ -28,7 +30,7 @@ class MoveMoneyScreen extends StatelessWidget {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(16.s),
         children: [
           _buildActionCard(
             context,
@@ -90,6 +92,7 @@ class MoveMoneyScreen extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const LoadServiceScreen(type: LoadServiceType.other)),
             ),
           ),
+          SizedBox(height: 30.s),
         ],
       ),
     );
@@ -108,11 +111,11 @@ class MoveMoneyScreen extends StatelessWidget {
       onTap: onTap ?? () => _showSnackBar(context, title),
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 15),
-        padding: const EdgeInsets.all(15),
+        margin: EdgeInsets.only(bottom: 14.s),
+        padding: EdgeInsets.all(16.s),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15.s),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.05),
@@ -124,32 +127,32 @@ class MoveMoneyScreen extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(12.s),
               decoration: BoxDecoration(
                 color: iconColor,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.s),
               ),
-              child: Icon(icon, color: iconForegroundColor, size: 28),
+              child: Icon(icon, color: iconForegroundColor, size: 28.s),
             ),
-            const SizedBox(width: 15),
+            SizedBox(width: 14.s),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.navy,
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4.s),
                   Text(
                     subtitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.grey,
-                      fontSize: 12,
+                      fontSize: 12.sp,
                     ),
                   ),
                 ],

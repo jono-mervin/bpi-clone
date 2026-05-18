@@ -7,6 +7,8 @@ import '../../transfers/screens/pay_bills_screen.dart';
 import '../../more/screens/my_statements_screen.dart';
 import '../../../core/providers/transaction_provider.dart';
 import 'package:intl/intl.dart';
+import 'package:neobank_ph/features/auth/screens/deposit_screen.dart';
+import '../../../core/utils/responsive.dart';
 
 class AccountDetailsScreen extends ConsumerStatefulWidget {
   final Account account;
@@ -21,6 +23,7 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Responsive().init(context);
     final transactions = ref.watch(transactionsProvider);
     final accountTransactions = transactions.where((tx) => tx.accountId == widget.account.id).toList();
 
@@ -34,26 +37,26 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
           icon: const Icon(Icons.arrow_back, color: AppColors.navy),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
+        title: Text(
           'Deposit accounts',
-          style: TextStyle(color: AppColors.navy, fontWeight: FontWeight.bold),
+          style: TextStyle(color: AppColors.navy, fontWeight: FontWeight.bold, fontSize: 18.sp),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 15),
+            SizedBox(height: 12.s),
             // Main Account Card
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
+              margin: EdgeInsets.symmetric(horizontal: 16.s),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(12.s),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 5),
+                    blurRadius: 8.s,
+                    offset: Offset(0, 4.s),
                   ),
                 ],
               ),
@@ -61,52 +64,52 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(16.s),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           widget.account.name,
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: AppColors.navy,
-                            fontSize: 16,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const Icon(Icons.keyboard_arrow_down, color: AppColors.navy),
+                        Icon(Icons.keyboard_arrow_down, color: AppColors.navy, size: 20.s),
                       ],
                     ),
                   ),
                   const Divider(height: 1),
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(16.s),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           'Available balance',
-                          style: TextStyle(color: Colors.grey, fontSize: 13),
+                          style: TextStyle(color: Colors.grey, fontSize: 11.sp),
                         ),
-                        const SizedBox(height: 5),
+                        SizedBox(height: 4.s),
                         Text(
                           'PHP ${NumberFormat('#,##0.00', 'en_US').format(widget.account.balance)}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: AppColors.navy,
-                            fontSize: 20,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 15),
-                        const Text(
+                        SizedBox(height: 12.s),
+                        Text(
                           'Total balance',
-                          style: TextStyle(color: Colors.grey, fontSize: 13),
+                          style: TextStyle(color: Colors.grey, fontSize: 11.sp),
                         ),
-                        const SizedBox(height: 5),
+                        SizedBox(height: 4.s),
                         Text(
                           'PHP ${NumberFormat('#,##0.00', 'en_US').format(widget.account.balance)}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 16,
+                            fontSize: 14.sp,
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -156,6 +159,12 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
                     icon: Icons.receipt_long,
                     label: 'Pay bills',
                     onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const PayBillsScreen())),
+                  ),
+                  const Divider(height: 1),
+                  _buildActionItem(
+                    icon: Icons.add_circle_outline,
+                    label: 'Deposit money',
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DepositScreen())),
                   ),
                   const Divider(height: 1),
                   _buildActionItem(
@@ -230,13 +239,13 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 12)),
-        const SizedBox(height: 4),
+        Text(label, style: TextStyle(color: Colors.grey, fontSize: 11.sp)),
+        SizedBox(height: 2.s),
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             color: AppColors.navy,
-            fontSize: 14,
+            fontSize: 12.sp,
             fontWeight: FontWeight.bold,
           ),
         ),

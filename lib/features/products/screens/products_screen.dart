@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
 import 'product_application_screen.dart';
+import '../../../core/utils/responsive.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Responsive().init(context);
     return Scaffold(
       backgroundColor: AppColors.white,
       resizeToAvoidBottomInset: false,
@@ -14,13 +16,13 @@ class ProductsScreen extends StatelessWidget {
         backgroundColor: AppColors.white,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: const Text(
+        title: Text(
           'Products',
-          style: TextStyle(color: AppColors.navy, fontWeight: FontWeight.bold, fontSize: 24),
+          style: TextStyle(color: AppColors.navy, fontWeight: FontWeight.bold, fontSize: 20.sp),
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(16.s),
         children: [
           _buildProductCard(context, Icons.person_add_alt_1_outlined, 'Open a savings account', AppColors.iconBgRed, AppColors.bpiRed, ProductType.savings),
           _buildProductCard(context, Icons.access_time_outlined, 'Open a time deposit', AppColors.iconBgGreen, AppColors.bpiTeal, ProductType.timeDeposit),
@@ -31,7 +33,7 @@ class ProductsScreen extends StatelessWidget {
           _buildProductCard(context, Icons.shield_outlined, 'Apply for health & life insurance', AppColors.iconBgBlue, Colors.blue, ProductType.savings),
           _buildProductCard(context, Icons.show_chart_outlined, 'Open a BPI Trade account', AppColors.iconBgPurple, Colors.indigo, ProductType.investment, subtitle: 'Start your stock trading journey with us'),
           _buildProductCard(context, Icons.toll_outlined, 'Open a BPI Wealth Builder account', AppColors.iconBgOrange, Colors.orange, ProductType.investment, subtitle: 'Invest as low as PHP 1,000 and unlock more benefits at each milestone'),
-          const SizedBox(height: 100),
+          SizedBox(height: 30.s),
         ],
       ),
     );
@@ -49,35 +51,35 @@ class ProductsScreen extends StatelessWidget {
       },
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 15),
-        padding: const EdgeInsets.all(15),
+        margin: EdgeInsets.only(bottom: 14.s),
+        padding: EdgeInsets.all(16.s),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15.s),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 5),
+              blurRadius: 8.s,
+              offset: Offset(0, 4.s),
             ),
           ],
         ),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(12)),
-              child: Icon(icon, color: iconColor, size: 28),
+              padding: EdgeInsets.all(12.s),
+              decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(12.s)),
+              child: Icon(icon, color: iconColor, size: 28.s),
             ),
-            const SizedBox(width: 15),
+            SizedBox(width: 14.s),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: const TextStyle(color: AppColors.navy, fontSize: 16, fontWeight: FontWeight.bold)),
+                  Text(title, style: TextStyle(color: AppColors.navy, fontSize: 16.sp, fontWeight: FontWeight.bold)),
                   if (subtitle != null) ...[
-                    const SizedBox(height: 4),
-                    Text(subtitle, style: const TextStyle(color: AppColors.grey, fontSize: 12)),
+                    SizedBox(height: 4.s),
+                    Text(subtitle, style: TextStyle(color: AppColors.grey, fontSize: 12.sp)),
                   ],
                 ],
               ),
